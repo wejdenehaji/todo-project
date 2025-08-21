@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+:root {
+  --font-open: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-open {
+  font-family: var(--font-open);
+}
+
+
+
+.text-customGray {
+  color: var(--color-customGray);
+}
+
+    
+
+
+    
+
