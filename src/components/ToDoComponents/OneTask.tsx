@@ -55,7 +55,7 @@ const OneTask = ({ task, deleteTask, updateTask }: props) => {
         className="grid grid-rows w-80
         sm:w-70
         md:w-60
-         h-50 !p-3 !bg-white! rounded-lg !shadow-sm !border-l-5 row-span-9"
+         h-50 !p-3 !bg-white rounded-lg !shadow-sm !border-l-5 row-span-9"
         style={{ borderColor: getCategoryColor(task.category)?.bg }}
       >
         <div className="flex items-center justify-between w-full ">

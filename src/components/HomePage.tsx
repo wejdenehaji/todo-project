@@ -5,10 +5,17 @@ import NavigationBar from "./NavigationBar";
 import Welcome from "./WelcomePages/Welcome";
 import page from "./WelcomePages/content";
 import ToDoPage from "./ToDoPage";
+import Account from "./Account";
+export const DataContext = React.createContext<{
+  showLoginDiv: boolean;
+  setLoginDiv: React.Dispatch<React.SetStateAction<boolean>>;
+} | null>(null);
 
-const paragraphs = [];
 const HomePage = () => {
+  const [showLoginDiv, setLoginDiv] = useState(false);
+
   const [pageNum, setPage] = useState(0);
+  const [showPage, setShowPage] = useState(false);
   const [todoShow, setTodoShow] = useState(false);
   const timerRef = useRef<number | null>(null);
   useEffect(() => {
@@ -31,29 +38,53 @@ const HomePage = () => {
       setTodoShow(true);
     }
   };
+  const createNav = (parag: string) => {
+    return (
+      <DataContext.Provider value={{ showLoginDiv, setLoginDiv }}>
+        <NavigationBar type={parag} />
+      </DataContext.Provider>
+    );
+  };
 
   return (
     <>
-      <div className="relative w-full h-screen ">
-        <NavigationBar />
-        
-            {pageNum < page.length ? (
-              <Welcome index={pageNum} handleNext={handleNext} />
-            ) : (
-              <ToDoPage />
-            )}
-            <AnimatePresence>
-        {todoShow && (
-          <motion.div
-            className="fixed top-[75px] left-0 w-full h-[calc(100%-75px)] bg-blue-400 z-50"
-            initial={{ x: "-100%", opacity: 0.9 }}
-            animate={{ x: "0%" , opacity: 1}}
-            exit={{ x: "100%" , opacity: 0.6 }}
-            transition={{ duration: 0.5, ease:  [0.7, 0.01, 0.05, 0.95]}}
-            onAnimationComplete={() => setTodoShow(false)} 
-          />
+      <div className="relative w-full h-screen sm:grid sm:!grid-cols-[auto_1fr]  ">
+        {pageNum < page.length ? (
+          <>
+            {createNav("welcome")}
+            <Welcome index={pageNum} handleNext={handleNext} />
+          </>
+        ) : (
+          <>
+            {createNav("todoPage")}
+            {showPage && <ToDoPage />}
+          </>
         )}
-      </AnimatePresence>
+        {showLoginDiv && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center  bg-black/40 backdrop-blur-sm"
+            onClick={() => setLoginDiv(false)}
+          >
+            
+              <Account />
+            </div>
+     
+        )}
+        <AnimatePresence>
+          {todoShow && (
+            <motion.div
+              className="fixed top-0 left-0 h-full w-full bg-blue-400 z-50"
+              initial={{ x: "-100%", opacity: 0.9 }}
+              animate={{ x: "0%", opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.6 }}
+              transition={{ duration: 0.5, ease: [0.7, 0.01, 0.05, 0.95] }}
+              onAnimationComplete={() => {
+                setTodoShow(false);
+                setShowPage(true);
+              }}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

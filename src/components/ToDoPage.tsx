@@ -57,7 +57,7 @@ const ToDoPage = () => {
         (label == "Default" || item.status === label) &&
         (chosenCategory == "Default" || item.category === chosenCategory)
     );
-
+    console.log(todoList);
     sort != "Default"
       ? sort == "Most urgent"
         ? newTodoList.sort(
@@ -86,13 +86,19 @@ const ToDoPage = () => {
 
   return (
     <>
-      <div className="grid grid-rows-[auto_1fr] h-[85vh] ">
-        <div className="flex justify-center sm:justify-end items-center !mr-2 !p-1">
-          <SortTask
-            setLabel={setLabel}
-            setChosenCategory={setChosenCategory}
-            setSort={setSort}
-          />
+      <div className="bg-gradient-to-br from-gray-100 via-gray-50 to-white grid grid-rows-[auto_1fr] h-[95vh] gap-3.5 ">
+        <div className="flex items-center justify-between">
+          <p className=" !p-3 text-lg font-semibold text-gray-700">
+            It's Good to have you back,
+            <span className="text-blue-500"> userName!</span>
+          </p>{" "}
+          <div className="flex justify-center sm:justify-end items-center !mr-2 !p-1">
+            <SortTask
+              setLabel={setLabel}
+              setChosenCategory={setChosenCategory}
+              setSort={setSort}
+            />
+          </div>
         </div>
 
         <div

@@ -21,7 +21,7 @@ const Welcome = ({ index, handleNext }: props) => {
               transition={{ duration: 0.75, ease: "easeOut" }}
             >
               <div
-                className={`flex items-center 
+                className={`flex items-center  
                     ${
                       index < 1
                         ? "flex-col-reverse text-center"

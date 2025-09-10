@@ -1,11 +1,15 @@
-import React from "react";
+import React ,{useState,useContext}from "react";
 import myImage from "../assets/image.png";
+import { DataContext } from "./HomePage";
 
-<img src={myImage} alt="image" />;
 
 const Profile = () => {
+const content = React.useContext(DataContext)
+if (!content) return null;
+
+  const { showLoginDiv, setLoginDiv } = content;
   return (
-    <div className="flex justify-center items-center gap-3 ">
+    <div className="flex sm:flex-col justify-center items-center gap-3">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -33,9 +37,8 @@ const Profile = () => {
           clipRule="evenodd"
         />
       </svg>
-      <div className="flex justify-center items-center gap-1.5">
-        <img src={myImage} className="size-7" alt="image" />
-
+      <div className="flex sm:flex-col justify-center items-center gap-1.5">
+        <img src={myImage} className="size-7" alt="image" onClick={()=>setLoginDiv(!showLoginDiv)} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

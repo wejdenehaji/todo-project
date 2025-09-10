@@ -61,11 +61,11 @@ const InputPlace = ({ addTask }: props) => {
     <>
       <div
         id="card"
-        className={`grid w-80
+        className={` bg-white grid w-80
         sm:w-70
         md:w-60 ${
           openTask ? "grid-rows-[1fr_3fr] h-70 row-span-12" : "grid-rows-1 h-20 row-span-4"
-        } !px-2 !py-3 !bg-white! rounded-lg !shadow-sm !border-l-5 !border-gray-200 `}
+        } !px-2 !py-3 !bg-white! rounded-lg !shadow-sm !border-l-5 !border-gray-300 `}
       >
         <div id="intro" className="flex items-start justify-between !pr-1.5">
           <p className="text-gray-700 !font-medium">Create New Card</p>
@@ -88,6 +88,7 @@ const InputPlace = ({ addTask }: props) => {
                 className="!border-1 !border-gray-300 rounded-xl !p-2 !mb-1"
               >
                 <input
+                
                   className="flex-1 !text-sm leading-tight outline-none text-gray-700 placeholder-gray-400 "
                   type="text"
                   placeholder="What is the task?"
